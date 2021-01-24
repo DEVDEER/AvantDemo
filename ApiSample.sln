@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Service", "Service", "{9851D0CC-3456-42E1-A9F5-B89F61191FB5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service.CoreApi", "Service\Service.CoreApi\Service.CoreApi.csproj", "{18F71DF4-0B64-4FA7-87B3-F79611601BC4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Service.CoreApi", "Service\Service.CoreApi\Service.CoreApi.csproj", "{18F71DF4-0B64-4FA7-87B3-F79611601BC4}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{12A5BB68-5555-4659-991E-2D599FC7E9CB}"
 	ProjectSection(SolutionItems) = preProject
@@ -14,7 +14,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ui", "Ui", "{770DC6C9-240A-4293-810F-728B096EE80A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ui.EventConsole", "Ui\Ui.EventConsole\Ui.EventConsole.csproj", "{A9FD8D34-3958-43A1-8654-44F5E446A6EF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ui.EventConsole", "Ui\Ui.EventConsole\Ui.EventConsole.csproj", "{A9FD8D34-3958-43A1-8654-44F5E446A6EF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{F15FDD87-E299-4C70-B643-F3745F432A3A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AKS", "AKS", "{EE3DFDC3-9FFD-43C4-8D39-2C4C069CC468}"
+	ProjectSection(SolutionItems) = preProject
+		Infrastructure\AKS\readme.md = Infrastructure\AKS\readme.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,6 +44,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{18F71DF4-0B64-4FA7-87B3-F79611601BC4} = {9851D0CC-3456-42E1-A9F5-B89F61191FB5}
 		{A9FD8D34-3958-43A1-8654-44F5E446A6EF} = {770DC6C9-240A-4293-810F-728B096EE80A}
+		{EE3DFDC3-9FFD-43C4-8D39-2C4C069CC468} = {F15FDD87-E299-4C70-B643-F3745F432A3A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6D10C152-5801-408D-82D9-973CA7472DEB}

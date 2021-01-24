@@ -73,7 +73,8 @@ namespace Service.CoreApi
             services.AddSwaggerGen(
                 c =>
                 {
-                    c.SwaggerDoc(
+	                c.CustomOperationIds(e => $"{e.ActionDescriptor.RouteValues["controller"]}_{e.RelativePath.Split('/').Last()}_{e.HttpMethod}".ToLowerInvariant());
+					c.SwaggerDoc(
                         "v1",
                         new OpenApiInfo
                         {

@@ -1,4 +1,4 @@
-﻿namespace Service.CoreApi.Controllers.v1_0
+namespace Service.CoreApi.Controllers.v1_0
 {
     using System;
     using System.Linq;
@@ -19,9 +19,10 @@
         /// Retrieves the amount of messages retrieved.
         /// </summary>
         /// <returns>The amount of messages.</returns>
-        [HttpGet("Messages")]
+        [HttpGet("Count")]
         public ActionResult<int> GetMessageCount()
         {
+	        var x = Request.RouteValues;
             return 0;
         }
 
