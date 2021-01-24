@@ -53,8 +53,13 @@ namespace Service.CoreApi
 
 		// This method gets called by the runtime. Use this method to add services to the container.
 		public void ConfigureServices(IServiceCollection services)
-        {
-            services.AddControllers();
+		{
+			services.AddApplicationInsightsTelemetry(
+				opt =>
+				{
+					opt.EnableDebugLogger = false;
+				});
+			services.AddControllers();
             services.AddCors(cors =>
 	            { 
 					cors.AddPolicy(_corsPolicyName,
