@@ -1,0 +1,38 @@
+pool:
+  vmImage: 'ubuntu-latest'
+
+trigger:
+- main
+
+variables:
+  - name: 'solution'
+    value: '**/ApiSample.sln'
+  - name: 'BuildConfiguration'
+    value: 'Release'
+
+steps:
+- task: DotNetCoreCLI@2
+  displayName: Restore
+  inputs:
+    command: restore
+    projects: $(solution)
+- task: DotNetCoreCLI@2
+  displayName: Build
+  inputs:
+    command: build
+    projects: $(solution)
+    arguments: '--no-restore --configuration $(BuildConfiguration)'
+- task: DotNetCoreCLI@2
+  displayName: Publish
+  inputs:
+    command: publish
+    publishWebProjects: false
+    projects: |
+      Service/Service.CoreApi/Service.CoreApi.csproj      
+    arguments: '--no-build --configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
+    zipAfterPublish: True
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
