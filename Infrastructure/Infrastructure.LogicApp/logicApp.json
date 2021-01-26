@@ -1,0 +1,36 @@
+{
+    "definition": {
+        "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+        "actions": {
+            "Condition": {
+                "actions": {},
+                "expression": {
+                    "and": [
+                        { "equals": ["@outputs('HTTP')['statusCode']", 200] }
+                    ]
+                },
+                "runAfter": { "HTTP": ["Succeeded"] },
+                "type": "If"
+            },
+            "HTTP": {
+                "inputs": {
+                    "headers": { "Accept": "application/json" },
+                    "method": "POST",
+                    "uri": "https://api-dd-logic-app-prod.azurewebsites.net/api/v1/Sync/Run"
+                },
+                "runAfter": {},
+                "type": "Http"
+            }
+        },
+        "contentVersion": "1.0.0.0",
+        "outputs": {},
+        "parameters": {},
+        "triggers": {
+            "Recurrence": {
+                "recurrence": { "frequency": "Hour", "interval": 6 },
+                "type": "Recurrence"
+            }
+        }
+    },
+    "parameters": {}
+}

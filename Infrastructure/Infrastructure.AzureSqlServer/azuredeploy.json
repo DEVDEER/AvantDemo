@@ -1,0 +1,82 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "app-stage-name": {
+      "type": "string",
+      "metadata": {
+        "description": "The name of the stage with the first letter in upper-case (e.g. 'Test' or 'Production')."
+      }
+    },
+    "project-name": {
+      "type": "string",
+      "metadata": {
+        "description": "The lower case name of the project as it appears in Azure DevOps."
+      }
+    },
+    "admin-name": {
+      "type": "string",
+      "metadata": {
+        "description": "The login-name of the SQL admin."
+      }
+    },
+    "admin-password": {
+      "type": "string",
+      "metadata": {
+        "description": "The login-name of the SQL admin's password."
+      }
+    }
+  },
+  "functions": [],
+  "variables": {
+    "sql-server-name": "[toLower(concat('sqls-dd-', parameters('project-name'), '-', parameters('app-stage-name')))]",
+    "database-name": "[concat(variables('sql-server-name'), '/', parameters('project-name'))]"
+  },
+  "resources": [
+    {
+      "name": "[variables('sql-server-name')]",
+      "type": "Microsoft.Sql/servers",
+      "apiVersion": "2019-06-01-preview",
+      "location": "[resourceGroup().location]",
+      "tags": {
+        "purpose": "test"
+      },
+      "properties": {
+        "administratorLogin": "[parameters('admin-name')]",
+        "administratorLoginPassword": "[parameters('admin-password')]",
+        "minimalTlsVersion": "1.2"
+      },
+      "resources": [
+        {
+          "type": "firewallRules",
+          "apiVersion": "2014-04-01",
+          "dependsOn": [
+            "[resourceId('Microsoft.Sql/servers', variables('sql-server-name'))]"
+          ],
+          "location": "[resourceGroup().location]",
+          "name": "AllowAllWindowsAzureIps",
+          "properties": {
+            "startIpAddress": "0.0.0.0",
+            "endIpAddress": "0.0.0.0"
+          }
+        }
+      ]
+    },
+    {
+      "name": "[variables('database-name')]",
+      "type": "Microsoft.Sql/servers/databases",
+      "apiVersion": "2014-04-01",
+      "location": "[resourceGroup().location]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Sql/servers', variables('sql-server-name'))]"
+      ],
+      "properties": {
+        "collation": "SQL_Latin1_General_CP1_CI_AS",
+        "edition": "Basic",
+        "maxSizeBytes": "1073741824",
+        "requestedServiceObjectiveName": "Basic"
+      }
+    }
+  ],
+  "outputs": {}
+}

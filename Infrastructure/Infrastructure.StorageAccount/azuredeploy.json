@@ -1,0 +1,57 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "app-stage-name": {
+      "type": "string",
+      "metadata": {
+        "description": "The name of the stage with the first letter in upper-case (e.g. 'Test' or 'Production')."
+      }
+    },
+    "project-name": {
+      "type": "string",
+      "metadata": {
+        "description": "The lower case name of the project as it appears in Azure DevOps."
+      }
+    }
+  },
+  "functions": [],
+  "variables": {
+    // account name building
+    "account-name": "[concat('stodd', parameters('project-name'), parameters('app-stage-name'))]",
+    // account name to use (lower case and max of 24 characters)
+    "account-name-cleaned": "[substring(toLower(variables('account-name')), 0, min(24, length(variables('account-name'))))]"    
+  },
+  "resources": [
+    {
+      "name": "[variables('account-name-cleaned')]",
+      "type": "Microsoft.Storage/storageAccounts",
+      "apiVersion": "2019-06-01",
+      "location": "[resourceGroup().location]",
+      "kind": "StorageV2",
+      "sku": {
+        "name": "Standard_LRS",
+        "tier": "Standard"
+      },
+      "properties": {
+        "supportsHttpsTrafficOnly": true,
+        "accessTier": "Hot"        
+      },
+      "resources": [
+        {
+          "name": "[concat(variables('account-name-cleaned'),'/','default')]",
+          "type": "Microsoft.Storage/storageAccounts/blobServices",
+          "apiVersion": "2019-06-01",
+          "properties": {
+            "deleteRetentionPolicy": {
+              "enabled": true,
+              "days": 365
+            }
+          },
+          "dependsOn": [ "[concat('Microsoft.Storage/storageAccounts/', variables('account-name-cleaned'))]" ]
+        }
+      ]
+    }
+  ],
+  "outputs": {}
+}

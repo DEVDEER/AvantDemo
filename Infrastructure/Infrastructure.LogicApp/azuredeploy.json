@@ -1,0 +1,47 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "app-stage-name": {
+            "type": "string",
+            "metadata": {
+                "description": "The name of the stage with the first letter in upper-case (e.g. 'Test' or 'Production')."
+            }
+        },
+        "project-name": {
+            "type": "string",
+            "metadata": {
+                "description": "The lower case name of the project as it appears in Azure DevOps."
+            }
+        },
+        "company-key": {
+            "type": "string",
+            "metadata": {
+                "description": "The shortened unique key for the running company."
+            }
+        },
+        "logic-app-definition": {
+            "type": "string",
+            "metadata": {
+                "description": "The JSON definition of the logic app."
+            }
+        }
+    },
+    "variables": {
+        // logic app
+        "logic-app-name": "[concat('lapp-', parameters('company-key'), '-', parameters('project-name'), '-', toLower(parameters('app-stage-name')))]"
+    },
+    "resources": [
+        {
+            "apiVersion": "2016-06-01",
+            "name": "[variables('logic-app-name')]",
+            "type": "Microsoft.Logic/workflows",
+            "location": "[resourceGroup().location]",
+            "properties": {
+                "definition": "[json(parameters('logic-app-definition'))]",
+                "state": "Enabled"
+            }
+        }
+    ],
+    "outputs": {}
+}
