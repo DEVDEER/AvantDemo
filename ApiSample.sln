@@ -29,6 +29,10 @@ Project("{151D2E53-A2C4-4D7D-83FE-D05416EBD58E}") = "Infrastructure.AzureSqlServ
 EndProject
 Project("{151D2E53-A2C4-4D7D-83FE-D05416EBD58E}") = "Infrastructure.StorageAccount", "Infrastructure\Infrastructure.StorageAccount\Infrastructure.StorageAccount.deployproj", "{E0787F89-378D-4698-86D0-249882C2D0FA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ui.AzureAdSample", "Ui\Ui.AzureAdSample\Ui.AzureAdSample.csproj", "{113F7297-C4A2-42D1-A042-96A384F0233B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ui.B2cDemo", "Ui\Ui.B2cDemo\Ui.B2cDemo.csproj", "{1505F592-3AD0-48E5-A10F-48D41AADA21F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,6 +59,14 @@ Global
 		{E0787F89-378D-4698-86D0-249882C2D0FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E0787F89-378D-4698-86D0-249882C2D0FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E0787F89-378D-4698-86D0-249882C2D0FA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{113F7297-C4A2-42D1-A042-96A384F0233B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{113F7297-C4A2-42D1-A042-96A384F0233B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{113F7297-C4A2-42D1-A042-96A384F0233B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{113F7297-C4A2-42D1-A042-96A384F0233B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1505F592-3AD0-48E5-A10F-48D41AADA21F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1505F592-3AD0-48E5-A10F-48D41AADA21F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1505F592-3AD0-48E5-A10F-48D41AADA21F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1505F592-3AD0-48E5-A10F-48D41AADA21F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -66,6 +78,8 @@ Global
 		{3EB19391-56F9-4AAD-80DE-1662B6E761B3} = {F15FDD87-E299-4C70-B643-F3745F432A3A}
 		{8A292D40-6726-4A92-A684-DC360C5E0A00} = {F15FDD87-E299-4C70-B643-F3745F432A3A}
 		{E0787F89-378D-4698-86D0-249882C2D0FA} = {F15FDD87-E299-4C70-B643-F3745F432A3A}
+		{113F7297-C4A2-42D1-A042-96A384F0233B} = {770DC6C9-240A-4293-810F-728B096EE80A}
+		{1505F592-3AD0-48E5-A10F-48D41AADA21F} = {770DC6C9-240A-4293-810F-728B096EE80A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6D10C152-5801-408D-82D9-973CA7472DEB}
